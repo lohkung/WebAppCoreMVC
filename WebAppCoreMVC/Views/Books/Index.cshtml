@@ -1,0 +1,23 @@
+﻿
+@{
+    ViewData["Title"] = "Index";
+}
+@model IEnumerable<Book>
+
+<h2>ข้อมูลหนังสือ</h2>
+<div>
+    <table border="1">
+        @foreach (var item in Model)
+        {
+        <tr>
+            <td>รหัส ISBN : @item.ISBN</td>
+
+            <td>ชื่อหนังสือ : @item.Title</td>
+
+            <td>ราคา : @item.Price</td>
+        </tr>
+
+        }
+    </table>
+</div>
+

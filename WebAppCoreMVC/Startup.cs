@@ -9,6 +9,9 @@ using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using WebAppCoreMVC.Services;
+using Microsoft.EntityFrameworkCore;
+using WebAppCoreMVC.Models;
 
 namespace WebAppCoreMVC
 {
@@ -33,6 +36,11 @@ namespace WebAppCoreMVC
 
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+            services.AddTransient<IBooksServices,BooksServices>();
+
+
+            var strConn = @"Server=.\SQLEXPRESS;Database=practice;Trusted_Connection=True;";
+            services.AddDbContext<PracticesContext>(options => options.UseSqlServer(strConn));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

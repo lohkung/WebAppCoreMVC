@@ -1,0 +1,32 @@
+﻿@model IEnumerable<Order>
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h2>ข้อมูลจากตาราง Order</h2>
+
+<p>
+    @using (Html.BeginForm("SearchOrders", "Orders", FormMethod.Get))
+    {
+        <div>
+            @Html.TextBox("txtFilter")<input type="submit" value="ค้นหา"/>
+        </div>
+
+    }
+</p>
+<table class="table">
+    <tr>
+        <th>รหัส</th>
+        <th>ชื่อผู้ซื้อ</th>
+        <th>นามสกุลผู้ซื้อ</th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@item.OrderID.ToString()</td>
+            <td>@item.Person.FirstName</td>
+            <td>@item.Person.LastName</td>
+        </tr>
+        }
+</table>
+
